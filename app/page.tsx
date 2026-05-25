@@ -250,7 +250,7 @@ export default function Home() {
         💼
       </div>
 
-      <h2>25+</h2>
+      <h2>5+</h2>
 
       <h4>Projects Completed</h4>
 
@@ -267,7 +267,7 @@ export default function Home() {
         ⭐
       </div>
 
-      <h2>5+</h2>
+      <h2>1+</h2>
 
       <h4>Years Experience</h4>
 

@@ -58,30 +58,10 @@ body {
    NAVBAR
    ============================================= */
 
-.navbar {
-  width: 100%;
-  padding: 26px 90px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(5, 5, 5, 0.72);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
 .logo {
   font-size: 50px;
   font-weight: 800;
   letter-spacing: 1px;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  gap: 50px;
 }
 
 nav a {
@@ -1578,19 +1558,18 @@ nav a:hover {
 @media (max-width: 768px) {
 
   /* ---------- BODY / PAGE ---------- */
-  /* Prevent any horizontal overflow causing the brown bleed */
+
   html, body {
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100vw;
+  width: 100%;
+  overflow-x: hidden;
   }
 
   /* ---------- NAVBAR ---------- */
   .navbar {
-    padding: 14px 16px;
-    /* Keep logo & button on ONE line — never let logo wrap */
-    flex-wrap: nowrap;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
   }
 
   /* Force logo onto a single line, scaled to fit */
@@ -1599,10 +1578,6 @@ nav a:hover {
     letter-spacing: 0px;
     white-space: nowrap;
     line-height: 1.2;
-  }
-
-  nav {
-    display: none;
   }
 
   .talk-btn {
@@ -2154,6 +2129,25 @@ nav a:hover {
    ============================================= */
 
 @media (max-width: 400px) {
+
+.homepage,
+.hero,
+.mockup,
+.about-section,
+.process-section,
+.results-section,
+.testimonial-section,
+.footer {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.homepage::before,
+.hero-right::before,
+.footer-glow {
+  pointer-events: none;
+  max-width: 100vw;
+}
 
   .logo {
     font-size: 19px;

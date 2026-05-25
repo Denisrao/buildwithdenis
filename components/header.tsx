@@ -12,7 +12,7 @@ export default function Header() {
     <header className="header">
       <nav className="navbar">
 
-        <Link href="/" className="footer-logo" onClick={closeMenu}>
+        <Link href="/" className="logo" onClick={closeMenu}>
           {"</>"} BuildWithDenis
         </Link>
 

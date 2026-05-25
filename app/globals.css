@@ -1,170 +1,304 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  background: #050505;
-  color: white;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  overlay: none;
-}
-
-body {
-  background: #050505;
-  color: white;
-  font-family: Arial, sans-serif;
-}
-a:visited,
-a:active,
-a:hover{
-  color:inherit;
-  text-decoration:none;
-}
-
-/* HEADER */
+/* =========================================
+   HEADER
+========================================= */
 
 .header {
   width: 100%;
   height: 90px;
-  padding: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
   background: #0d0d0d;
   border-bottom: 1px solid #1f1f1f;
+
   position: sticky;
+  position: -webkit-sticky;
+
   top: 0;
-  z-index: 1000;
+
+  z-index: 999999;
+
+  overflow: visible;
 }
 
-.logo {
-  font-size: 28px;
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+  width: 100%;
+  height: 100%;
+
+  padding: 0 5%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo,
+.footer-logo {
   font-weight: bold;
   color: #bcbcbc;
+
+  text-decoration: none;
+
+  white-space: nowrap;
 }
+
+/* =========================================
+   NAV LINKS
+========================================= */
 
 .nav-links {
   display: flex;
+  align-items: center;
+
   gap: 35px;
 }
 
 .nav-links a {
   color: white;
-  text-decoration: none;
+
   transition: 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #c927a9;
+  color: #bcbcbb;
 }
 
-/* FOOTER */
+/* =========================================
+   FOOTER
+========================================= */
 
 .footer {
   padding: 40px 8%;
+
   text-align: center;
+
   border-top: 1px solid #1f1f1f;
+
   background: #0d0d0d;
+
   color: #bcbcbc;
 }
-.footer-logo{
+
+.footer-btn a {
   text-decoration: none;
 }
-.footer-btn a{
-  text-decoration: none;
-}
-/* ── Hamburger button ── */
+
+/* =========================================
+   HAMBURGER
+========================================= */
+
 .hamburger {
   display: none;
+
   flex-direction: column;
   justify-content: space-between;
+
   width: 26px;
   height: 18px;
+
   background: none;
   border: none;
+
   cursor: pointer;
+
   padding: 0;
-  z-index: 1100;
+
+  z-index: 100000;
 }
 
 .hamburger span {
   display: block;
+
   width: 100%;
   height: 2px;
+
   background: #bcbcbc;
+
   border-radius: 2px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+
   transform-origin: center;
 }
 
-.hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
 
-/* Hide mobile CTA on desktop */
-.mobile-cta { display: none; }
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
 
-/* ── Mobile breakpoint ── */
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* =========================================
+   MOBILE CTA
+========================================= */
+
+.mobile-cta {
+  display: none;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
 @media (max-width: 768px) {
-  .header { height: 65px; }
 
-  .hamburger { display: flex; }
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
+  }
 
-  /* Hide desktop CTA */
-  .desktop-cta { display: none; }
+  body {
+    padding-top: 65px;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 65px;
+
+    background: #0d0d0d;
+    border-bottom: 1px solid #1f1f1f;
+
+    z-index: 999999;
+
+    overflow: visible;
+
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .navbar {
+    width: 100%;
+    height: 100%;
+
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+
+    overflow: visible;
+  }
+
+  .logo,
+  .footer-logo {
+    font-size: 20px;
+
+    flex: 1;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* HAMBURGER */
+
+  .hamburger {
+    display: flex;
+
+    flex-shrink: 0;
+  }
+
+  /* HIDE DESKTOP CTA */
+
+  .desktop-cta {
+    display: none;
+  }
+
+  /* MOBILE MENU */
 
   .nav-links {
     position: fixed;
+
     top: 65px;
     left: 0;
+
     width: 100%;
+
+    display: flex;
     flex-direction: column;
+    align-items: flex-start;
+
     gap: 0;
+
     background: #0d0d0d;
+
     border-top: 1px solid #1f1f1f;
+
     overflow: hidden;
+
     max-height: 0;
+
     transition: max-height 0.35s ease;
+
+    z-index: 99999;
+
+    will-change: max-height;
   }
 
-  .nav-links.open { max-height: 500px; }
+  .nav-links.open {
+    max-height: 500px;
+  }
 
   .nav-links a {
+    width: 100%;
+
     display: block;
+
     padding: 16px 24px;
+
     border-bottom: 1px solid #1f1f1f;
+
     font-size: 16px;
   }
-  .nav-links a :hover{
-    color: #bcbcbc;
+
+  .nav-links a:last-child {
+    border-bottom: none;
   }
 
-  .nav-links a:last-child { border-bottom: none; }
+  /* MOBILE CONTACT BUTTON */
 
-  /* Show contact inside the mobile drawer */
   .mobile-cta {
     display: block;
-    margin: 16px 24px;
+    margin-right: 3px;
     text-align: center;
   }
-}
-@media (max-width: 768px) {
+
+  /* REMOVE MOBILE TAP HIGHLIGHT */
+
   *:focus {
     outline: none;
+
     -webkit-tap-highlight-color: transparent;
   }
 
-  a, button {
+  a,
+  button {
     -webkit-tap-highlight-color: transparent;
   }
 }
