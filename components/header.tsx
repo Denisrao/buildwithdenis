@@ -1,24 +1,52 @@
+"use client";
+import { useState } from "react";
 import "../styles/home.css";
 import Link from "next/link";
-export default function Home() {
-  return (
-    <main className="header">
 
-      <header className="navbar">
-        <Link href="/" className="footer-logo">
-        {"</>"} BuildWithDenis
+export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeMenu = () => setIsOpen(false);
+
+  return (
+    <header className="header">
+      <nav className="navbar">
+
+        <Link href="/" className="footer-logo" onClick={closeMenu}>
+          {"</>"} BuildWithDenis
         </Link>
 
-        <nav>
-          <Link href="/ourservices">Services</Link>
-          <Link href="/work">Work</Link>
-          <Link href="/process">Process</Link>
-          <Link href="/about">About</Link>
-          <Link href="/faq">FAQ</Link>
-        </nav>
+        {/* Desktop + Mobile nav links */}
+        <div className={`nav-links ${isOpen ? "open" : ""}`}>
+          <Link href="/ourservices" onClick={closeMenu}>Services</Link>
+          <Link href="/work"        onClick={closeMenu}>Work</Link>
+          <Link href="/process"     onClick={closeMenu}>Process</Link>
+          <Link href="/about"       onClick={closeMenu}>About</Link>
+          <Link href="/faq"         onClick={closeMenu}>FAQ</Link>
+          {/* Contact button inside drawer on mobile */}
+          <Link href="/contact" className="talk-btn contact-btn mobile-cta" onClick={closeMenu}>
+            Contact
+          </Link>
+        </div>
 
-        <button className="talk-btn"><Link href="/contact" className="contact-btn">Contact</Link></button>
-      </header>
-      </main>
-  )
+        {/* Desktop CTA */}
+        <button className="talk-btn desktop-cta">
+          <Link href="/contact" className="contact-btn">Contact</Link>
+        </button>
+
+        {/* Hamburger */}
+        <button
+          className={`hamburger ${isOpen ? "open" : ""}`}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle navigation"
+          aria-expanded={isOpen}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+      </nav>
+    </header>
+  );
 }
