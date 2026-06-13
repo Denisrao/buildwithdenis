@@ -1,5 +1,42 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 export default function Home() {
+  const testimonials = [
+  {
+    name: "Raman Singh",
+    role: "Management Head, Private Institute",
+    text: "Denis delivered a beautiful, fast and responsive website that helped us stand out. Highly recommended.",
+    image: "/images/img testimonial profile.jpeg",
+  },
+  {
+    name: "Apporav Sherawat",
+    role: "Owner at a Local Bakery",
+    text: "They focused on maintaining our brand personality and standards. We've improved significantly after Denis's team took over the project. Thanks for everything.",
+    image: "/images/appor img.jpeg",
+  },
+];
+
+const [current, setCurrent] = useState(0);
+
+const nextSlide = () => {
+  setCurrent((prev) => (prev + 1) % testimonials.length);
+};
+
+const prevSlide = () => {
+  setCurrent(
+    (prev) => (prev - 1 + testimonials.length) % testimonials.length
+  );
+};
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrent((prev) => (prev + 1) % testimonials.length);
+  }, 5000);
+
+  return () => clearInterval(interval);
+}, []);
   return (
     <main>
 
@@ -330,17 +367,21 @@ export default function Home() {
 
   <div className="testimonial-slider">
 
-    <button className="slider-btn">
+    <button
+      className="slider-btn"
+      onClick={prevSlide}
+      aria-label="Previous testimonial"
+    >
       ←
     </button>
 
-    <div className="testimonial-card active-testimonial">
+    <div className="testimonial-card">
 
       <div className="testimonial-user">
 
         <img
-          src="https://randomuser.me/api/portraits/men/32.jpg"
-          alt="Client"
+          src={testimonials[current].image}
+          alt={testimonials[current].name}
         />
 
         <div className="testimonial-content">
@@ -350,18 +391,15 @@ export default function Home() {
           </div>
 
           <p>
-            “Denis delivered a beautiful,
-            fast and responsive website
-            that helped our brand stand out.
-            Highly recommended.”
+            "{testimonials[current].text}"
           </p>
 
           <h4>
-            Michael Carter
+            {testimonials[current].name}
           </h4>
 
           <span>
-            Founder, Nexora
+            {testimonials[current].role}
           </span>
 
         </div>
@@ -370,9 +408,29 @@ export default function Home() {
 
     </div>
 
-    <button className="slider-btn">
+    <button
+      className="slider-btn"
+      onClick={nextSlide}
+      aria-label="Next testimonial"
+    >
       →
     </button>
+
+  </div>
+
+  <div className="testimonial-dots">
+
+    {testimonials.map((_, index) => (
+      <span
+        key={index}
+        className={
+          current === index
+            ? "dot active-dot"
+            : "dot"
+        }
+        onClick={() => setCurrent(index)}
+      />
+    ))}
 
   </div>
 
