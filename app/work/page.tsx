@@ -51,8 +51,8 @@ export default function WorkPage() {
               <span>UI/UX</span>
             </div>
 
-            <a href="#" className="primary-btn">
-              View Project
+            <a href="https://brpublicschool.infinityfreeapp.com/" className="primary-btn">
+              View Project [Going Live Soon]
             </a>
 
           </div>
